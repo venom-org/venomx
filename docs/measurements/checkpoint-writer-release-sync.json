@@ -1,0 +1,31 @@
+{
+  "label": "release-sync",
+  "state_fs": "ext2/ext3",
+  "panes": 1,
+  "mib_per_pane": 16,
+  "rows_per_pane": 99864,
+  "cols": 200,
+  "baseline_ping_median_s": 2.801300070132129e-05,
+  "trials": [
+    {
+      "checkpoint_s": 4.981339985002705,
+      "max_ping_s": 4.981135019999783,
+      "pings_during": 4,
+      "file_bytes": 17197395
+    },
+    {
+      "checkpoint_s": 5.2182188570004655,
+      "max_ping_s": 5.218048816997907,
+      "pings_during": 3,
+      "file_bytes": 17197395
+    },
+    {
+      "checkpoint_s": 5.440301500002533,
+      "max_ping_s": 5.4401423199997225,
+      "pings_during": 4,
+      "file_bytes": 17197395
+    }
+  ],
+  "median_checkpoint_s": 5.2182188570004655,
+  "median_max_ping_s": 5.218048816997907
+}

@@ -1,0 +1,17 @@
+.{
+    .name = .venomx,
+    .version = "0.0.0",
+    .fingerprint = 0x2b94578b13790e3e,
+    .minimum_zig_version = "0.17.1",
+    .dependencies = .{
+        .venom_std = .{
+            .url = "git+https://github.com/venom-org/venom-std#347de9c057c04e1afce962a53ee663e92b064eae",
+            .hash = "venom_std-0.0.0-sfz3uq4LEABFCW5IOWmdJV867RXhkf0NZp_WQNVwPiLQ",
+        },
+        .venom_term = .{
+            .url = "git+https://github.com/venom-org/venom-term#acddc3c9226dec545eb3b2667dbb128005adfce6",
+            .hash = "venom_term-0.0.0-UGsCytrWDgDgiVnxaGxjpNtiuXgJEpgPtmcews9MZJpM",
+        },
+    },
+    .paths = .{ "build.zig", "build.zig.zon", "src", "README.md", ".zigversion", "conformance", "test" },
+}

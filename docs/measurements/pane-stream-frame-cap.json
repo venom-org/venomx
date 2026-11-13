@@ -1,0 +1,2947 @@
+{
+ "note": "Base has no cap, cap is the 256 KiB frame cap. All ReleaseFast except memory_by_build_mode, on a shared machine.",
+ "machine": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "threads": 16,
+  "kernel": "7.3.1-1-cachyos",
+  "python": "3.13.2",
+  "zig": "0.17.0",
+  "mem_gib": 62.4,
+  "exe": "venomx",
+  "shared_machine": "other agents ran builds and tests in parallel; see load per scenario"
+ },
+ "frames": {
+  "base": {
+   "loadavg_before": [
+    15.44,
+    13.4,
+    17.63
+   ],
+   "loadavg_after": [
+    11.21,
+    12.5,
+    16.94
+   ],
+   "wall_s": 89.4,
+   "rows": [
+    {
+     "scenario": "frames",
+     "load": "build",
+     "reader_kib_s": 64,
+     "seconds": 21,
+     "max_pty_frame_kib": 417.9,
+     "max_freeze_ms": 6531,
+     "overflows_per_s": 0.05,
+     "sibling_samples": 6,
+     "sibling_p50_ms": 3181.348,
+     "sibling_max_ms": 6530.023,
+     "sibling_unanswered_ms": 5342
+    },
+    {
+     "scenario": "frames",
+     "load": "tui",
+     "reader_kib_s": 256,
+     "seconds": 21,
+     "max_pty_frame_kib": 471.8,
+     "max_freeze_ms": 1842,
+     "overflows_per_s": 0.48,
+     "sibling_samples": 20,
+     "sibling_p50_ms": 1510.988,
+     "sibling_max_ms": 1978.407,
+     "sibling_unanswered_ms": 54
+    },
+    {
+     "scenario": "frames",
+     "load": "flood200",
+     "reader_kib_s": 256,
+     "seconds": 21,
+     "max_pty_frame_kib": 126.1,
+     "max_freeze_ms": 1020,
+     "overflows_per_s": 1.0,
+     "sibling_samples": 264,
+     "sibling_p50_ms": 1.072,
+     "sibling_max_ms": 791.928,
+     "sibling_unanswered_ms": 0
+    },
+    {
+     "scenario": "frames",
+     "load": "flood200",
+     "reader_kib_s": 1024,
+     "seconds": 21,
+     "max_pty_frame_kib": 734.8,
+     "max_freeze_ms": 942,
+     "overflows_per_s": 1.0,
+     "sibling_samples": 368,
+     "sibling_p50_ms": 1.077,
+     "sibling_max_ms": 754.133,
+     "sibling_unanswered_ms": 288
+    }
+   ]
+  },
+  "cap": {
+   "loadavg_before": [
+    12.33,
+    12.66,
+    16.76
+   ],
+   "loadavg_after": [
+    10.47,
+    11.97,
+    16.13
+   ],
+   "wall_s": 89.3,
+   "rows": [
+    {
+     "scenario": "frames",
+     "load": "build",
+     "reader_kib_s": 64,
+     "seconds": 21,
+     "max_pty_frame_kib": 256.0,
+     "max_freeze_ms": 4006,
+     "overflows_per_s": 0.05,
+     "sibling_samples": 7,
+     "sibling_p50_ms": 3228.051,
+     "sibling_max_ms": 4005.209,
+     "sibling_unanswered_ms": 3423
+    },
+    {
+     "scenario": "frames",
+     "load": "tui",
+     "reader_kib_s": 256,
+     "seconds": 21,
+     "max_pty_frame_kib": 256.0,
+     "max_freeze_ms": 1002,
+     "overflows_per_s": 0.71,
+     "sibling_samples": 30,
+     "sibling_p50_ms": 876.344,
+     "sibling_max_ms": 1001.174,
+     "sibling_unanswered_ms": 95
+    },
+    {
+     "scenario": "frames",
+     "load": "flood200",
+     "reader_kib_s": 256,
+     "seconds": 21,
+     "max_pty_frame_kib": 128.0,
+     "max_freeze_ms": 950,
+     "overflows_per_s": 1.0,
+     "sibling_samples": 253,
+     "sibling_p50_ms": 1.074,
+     "sibling_max_ms": 793.786,
+     "sibling_unanswered_ms": 171
+    },
+    {
+     "scenario": "frames",
+     "load": "flood200",
+     "reader_kib_s": 1024,
+     "seconds": 21,
+     "max_pty_frame_kib": 256.0,
+     "max_freeze_ms": 937,
+     "overflows_per_s": 1.0,
+     "sibling_samples": 390,
+     "sibling_p50_ms": 1.073,
+     "sibling_max_ms": 247.878,
+     "sibling_unanswered_ms": 0
+    }
+   ]
+  }
+ },
+ "stalled_last_run": {
+  "base": {
+   "loadavg_before": [
+    8.06,
+    11.0,
+    15.58
+   ],
+   "loadavg_after": [
+    6.78,
+    10.31,
+    15.15
+   ],
+   "wall_s": 37.6,
+   "rows": [
+    {
+     "scenario": "stalled",
+     "ring": 262144,
+     "clients": 0,
+     "history": 0,
+     "rss_mib": 8.7,
+     "largest_frame_kib": 0.0,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 262144,
+     "clients": 64,
+     "history": 0,
+     "rss_mib": 34.1,
+     "largest_frame_kib": 201.8,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 1048576,
+     "clients": 0,
+     "history": 0,
+     "rss_mib": 9.4,
+     "largest_frame_kib": 0.0,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 1048576,
+     "clients": 64,
+     "history": 0,
+     "rss_mib": 62.4,
+     "largest_frame_kib": 724.1,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 1048576,
+     "clients": 0,
+     "history": 10000,
+     "rss_mib": 24.6,
+     "largest_frame_kib": 0.0,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 1048576,
+     "clients": 64,
+     "history": 10000,
+     "rss_mib": 246.2,
+     "largest_frame_kib": 0.0,
+     "watcher_overflows": 0
+    }
+   ]
+  },
+  "cap": {
+   "loadavg_before": [
+    6.78,
+    10.31,
+    15.15
+   ],
+   "loadavg_after": [
+    5.43,
+    9.58,
+    14.73
+   ],
+   "wall_s": 37.6,
+   "rows": [
+    {
+     "scenario": "stalled",
+     "ring": 262144,
+     "clients": 0,
+     "history": 0,
+     "rss_mib": 8.7,
+     "largest_frame_kib": 0.0,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 262144,
+     "clients": 64,
+     "history": 0,
+     "rss_mib": 34.1,
+     "largest_frame_kib": 218.7,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 1048576,
+     "clients": 0,
+     "history": 0,
+     "rss_mib": 9.4,
+     "largest_frame_kib": 0.0,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 1048576,
+     "clients": 64,
+     "history": 0,
+     "rss_mib": 33.5,
+     "largest_frame_kib": 256.0,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 1048576,
+     "clients": 0,
+     "history": 10000,
+     "rss_mib": 24.6,
+     "largest_frame_kib": 0.0,
+     "watcher_overflows": 0
+    },
+    {
+     "scenario": "stalled",
+     "ring": 1048576,
+     "clients": 64,
+     "history": 10000,
+     "rss_mib": 246.2,
+     "largest_frame_kib": 0.0,
+     "watcher_overflows": 0
+    }
+   ]
+  }
+ },
+ "trials": {
+  "base": {
+   "loadavg_before": [
+    4.64,
+    7.17,
+    12.49
+   ],
+   "loadavg_after": [
+    7.21,
+    7.55,
+    11.14
+   ],
+   "wall_s": 322.0,
+   "rows": [
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 97.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 96.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 97.0
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 91.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 96.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 182.36,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 153.26,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 188.89,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 201.56,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 202.98,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 96.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 83.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 199.43,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 198.98,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 176.27,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 91.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 181.89,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 60.48,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 48.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.02,
+     "daemon_resyncs": 2,
+     "resyncs_per_s": 0.67,
+     "daemon_cpu_pct": 41.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.01,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 56.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.01,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 55.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 88.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 152.27,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 96.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 150.04,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 157.05,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 96.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 153.04,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 146.84,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 96.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 182.35,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 125.48,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 84.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 137.02,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 90.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 182.44,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 203.02,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.0,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.0,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.0,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.0,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.0,
+     "daemon_resyncs": 4,
+     "resyncs_per_s": 1.33,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 235.51,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 90.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 247.58,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 93.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 98.57,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 92.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 169.02,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 214.08,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 93.0
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.02,
+     "daemon_resyncs": 2,
+     "resyncs_per_s": 0.67,
+     "daemon_cpu_pct": 80.0
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 91.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 91.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 234.2,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 90.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 269.72,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 91.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 288.86,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 90.0
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 296.73,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 91.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 292.46,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 90.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 91.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 90.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 262.15,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 87.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 237.93,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 87.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 266.31,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 87.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 304.25,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 91.0
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 329.06,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 89.0
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 118.75,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 53.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 226.31,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 89.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 249.4,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 87.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 312.7,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 325.57,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    }
+   ]
+  },
+  "cap": {
+   "loadavg_before": [
+    4.45,
+    4.78,
+    8.56
+   ],
+   "loadavg_after": [
+    4.39,
+    4.89,
+    7.57
+   ],
+   "wall_s": 321.8,
+   "rows": [
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.02,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 73.0
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.02,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 90.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 135.96,
+     "daemon_resyncs": 2,
+     "resyncs_per_s": 0.67,
+     "daemon_cpu_pct": 91.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 185.38,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 179.15,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 187.93,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 93.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 186.91,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 93.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.02,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 70.7
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 96.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 92.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 199.99,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 189.61,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 193.99,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 201.18,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 203.63,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.7
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.0
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 96.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 205.46,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 96.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 212.82,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 96.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 189.09,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 91.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 191.52,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 196.8,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 89.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 192.2,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 131.3,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 82.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 191.62,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 180.2,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood80",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 173.79,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 92.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.0,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.0,
+     "daemon_resyncs": 4,
+     "resyncs_per_s": 1.33,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.01,
+     "daemon_resyncs": 3,
+     "resyncs_per_s": 1.0,
+     "daemon_cpu_pct": 87.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.0,
+     "daemon_resyncs": 4,
+     "resyncs_per_s": 1.33,
+     "daemon_cpu_pct": 92.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.0,
+     "daemon_resyncs": 4,
+     "resyncs_per_s": 1.33,
+     "daemon_cpu_pct": 91.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 314.3,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 92.7
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 331.49,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 342.36,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 339.8,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 262144,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 336.57,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.0
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 321.05,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 320.12,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 335.61,
+     "daemon_resyncs": 1,
+     "resyncs_per_s": 0.33,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 337.7,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 524288,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 340.68,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 340.38,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 344.16,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 340.27,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 336.42,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 1048576,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 316.51,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.0
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.7
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 95.0
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "emulating",
+     "sink": "fast",
+     "sink_mib_s": 0.03,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 94.3
+    },
+    {
+     "scenario": "real",
+     "trial": 0,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 321.19,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 1,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 318.88,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 2,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 320.0,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.7
+    },
+    {
+     "scenario": "real",
+     "trial": 3,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 319.81,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    },
+    {
+     "scenario": "real",
+     "trial": 4,
+     "load": "flood200",
+     "ring": 2097152,
+     "client": "raw",
+     "sink": "fast",
+     "sink_mib_s": 321.17,
+     "daemon_resyncs": 0,
+     "resyncs_per_s": 0.0,
+     "daemon_cpu_pct": 93.3
+    }
+   ]
+  }
+ },
+ "memory_by_build_mode": {
+  "cap": {
+   "loadavg_before": [
+    6.84,
+    7.95,
+    13.03
+   ],
+   "loadavg_after": [
+    6.09,
+    7.75,
+    12.91
+   ],
+   "wall_s": 9.5,
+   "rows": [
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 65536,
+     "rss_empty_mib": 7.7,
+     "rss_32_idle_mib": 8.8,
+     "rss_full_mib": 205.8,
+     "per_pane_kib": 6340.1,
+     "ring_share_pct": 1.0
+    },
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 262144,
+     "rss_empty_mib": 7.7,
+     "rss_32_idle_mib": 8.8,
+     "rss_full_mib": 211.8,
+     "per_pane_kib": 6531.8,
+     "ring_share_pct": 3.9
+    },
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 1048576,
+     "rss_empty_mib": 7.7,
+     "rss_32_idle_mib": 8.7,
+     "rss_full_mib": 236.0,
+     "per_pane_kib": 7304.1,
+     "ring_share_pct": 14.0
+    },
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 4194304,
+     "rss_empty_mib": 7.7,
+     "rss_32_idle_mib": 8.7,
+     "rss_full_mib": 331.9,
+     "per_pane_kib": 10375.6,
+     "ring_share_pct": 39.5
+    }
+   ]
+  },
+  "safe": {
+   "loadavg_before": [
+    6.09,
+    7.75,
+    12.91
+   ],
+   "loadavg_after": [
+    5.38,
+    7.55,
+    12.78
+   ],
+   "wall_s": 10.0,
+   "rows": [
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 65536,
+     "rss_empty_mib": 9.7,
+     "rss_32_idle_mib": 63.7,
+     "rss_full_mib": 222.7,
+     "per_pane_kib": 6816.9,
+     "ring_share_pct": 0.9
+    },
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 262144,
+     "rss_empty_mib": 9.9,
+     "rss_32_idle_mib": 69.9,
+     "rss_full_mib": 228.9,
+     "per_pane_kib": 7008.0,
+     "ring_share_pct": 3.7
+    },
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 1048576,
+     "rss_empty_mib": 10.6,
+     "rss_32_idle_mib": 94.6,
+     "rss_full_mib": 253.5,
+     "per_pane_kib": 7773.9,
+     "ring_share_pct": 13.2
+    },
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 4194304,
+     "rss_empty_mib": 13.6,
+     "rss_32_idle_mib": 193.6,
+     "rss_full_mib": 352.5,
+     "per_pane_kib": 10846.9,
+     "ring_share_pct": 37.8
+    }
+   ]
+  },
+  "debug": {
+   "loadavg_before": [
+    5.38,
+    7.55,
+    12.78
+   ],
+   "loadavg_after": [
+    5.4,
+    7.4,
+    12.62
+   ],
+   "wall_s": 18.4,
+   "rows": [
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 65536,
+     "rss_empty_mib": 21.3,
+     "rss_32_idle_mib": 75.3,
+     "rss_full_mib": 233.9,
+     "per_pane_kib": 6804.0,
+     "ring_share_pct": 0.9
+    },
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 262144,
+     "rss_empty_mib": 21.5,
+     "rss_32_idle_mib": 81.5,
+     "rss_full_mib": 240.1,
+     "per_pane_kib": 6996.4,
+     "ring_share_pct": 3.7
+    },
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 1048576,
+     "rss_empty_mib": 22.2,
+     "rss_32_idle_mib": 106.5,
+     "rss_full_mib": 264.9,
+     "per_pane_kib": 7764.6,
+     "ring_share_pct": 13.2
+    },
+    {
+     "scenario": "memory",
+     "panes": 32,
+     "ring": 4194304,
+     "rss_empty_mib": 25.2,
+     "rss_32_idle_mib": 205.2,
+     "rss_full_mib": 363.8,
+     "per_pane_kib": 10835.6,
+     "ring_share_pct": 37.8
+    }
+   ]
+  }
+ },
+ "streams_on_one_connection": {
+  "columns": "panes: [overflows per stream per s, delivered MiB/s] for two 4 s runs on 200-byte floods, load average 1.3 to 1.7",
+  "rows": {
+   "base": {
+    "1": [
+     [
+      0,
+      334.0
+     ],
+     [
+      0,
+      340.9
+     ]
+    ],
+    "2": [
+     [
+      0,
+      343.3
+     ],
+     [
+      0,
+      342.6
+     ]
+    ],
+    "4": [
+     [
+      0,
+      327.4
+     ],
+     [
+      0,
+      329.8
+     ]
+    ],
+    "6": [
+     [
+      0.08,
+      314.7
+     ],
+     [
+      0.04,
+      304.5
+     ]
+    ],
+    "8": [
+     [
+      0.09,
+      311.0
+     ],
+     [
+      0.09,
+      309.1
+     ]
+    ],
+    "12": [
+     [
+      0.23,
+      274.9
+     ],
+     [
+      0.44,
+      240.9
+     ]
+    ]
+   },
+   "cap": {
+    "1": [
+     [
+      0,
+      337.0
+     ],
+     [
+      0,
+      337.9
+     ]
+    ],
+    "2": [
+     [
+      0,
+      342.9
+     ],
+     [
+      0,
+      342.8
+     ]
+    ],
+    "4": [
+     [
+      0,
+      322.1
+     ],
+     [
+      0,
+      325.2
+     ]
+    ],
+    "6": [
+     [
+      0.04,
+      318.1
+     ],
+     [
+      0.08,
+      320.3
+     ]
+    ],
+    "8": [
+     [
+      0.59,
+      241.0
+     ],
+     [
+      0.62,
+      227.8
+     ]
+    ],
+    "12": [
+     [
+      0.98,
+      148.5
+     ],
+     [
+      0.94,
+      151.7
+     ]
+    ]
+   }
+  }
+ },
+ "full_run_with_cap": {
+  "wall_s": 2100,
+  "exit": 0,
+  "scenarios": {
+   "rates": {
+    "wall_s": 22.6,
+    "loadavg_before": [
+     5.52,
+     6.98,
+     10.66
+    ],
+    "loadavg_after": [
+     4.33,
+     6.58,
+     10.43
+    ]
+   },
+   "ring": {
+    "wall_s": 56.2,
+    "loadavg_before": [
+     4.33,
+     6.58,
+     10.43
+    ],
+    "loadavg_after": [
+     5.48,
+     6.5,
+     10.18
+    ]
+   },
+   "resume": {
+    "wall_s": 49.4,
+    "loadavg_before": [
+     5.48,
+     6.5,
+     10.18
+    ],
+    "loadavg_after": [
+     3.52,
+     5.81,
+     9.75
+    ]
+   },
+   "real": {
+    "wall_s": 193.1,
+    "loadavg_before": [
+     3.52,
+     5.81,
+     9.75
+    ],
+    "loadavg_after": [
+     4.45,
+     4.78,
+     8.56
+    ]
+   },
+   "memory": {
+    "wall_s": 9.5,
+    "loadavg_before": [
+     4.39,
+     4.89,
+     7.57
+    ],
+    "loadavg_after": [
+     4.57,
+     4.91,
+     7.55
+    ]
+   },
+   "snapshot": {
+    "wall_s": 155.5,
+    "loadavg_before": [
+     4.57,
+     4.91,
+     7.55
+    ],
+    "loadavg_after": [
+     2.05,
+     3.6,
+     6.63
+    ]
+   },
+   "overflow": {
+    "wall_s": 54.8,
+    "loadavg_before": [
+     2.05,
+     3.6,
+     6.63
+    ],
+    "loadavg_after": [
+     2.66,
+     3.46,
+     6.41
+    ]
+   },
+   "hold": {
+    "wall_s": 850.3,
+    "loadavg_before": [
+     2.66,
+     3.46,
+     6.41
+    ],
+    "loadavg_after": [
+     2.21,
+     1.3,
+     3.13
+    ]
+   },
+   "coalesce": {
+    "wall_s": 259.8,
+    "loadavg_before": [
+     2.21,
+     1.3,
+     3.13
+    ],
+    "loadavg_after": [
+     0.28,
+     0.98,
+     2.57
+    ]
+   },
+   "trials": {
+    "wall_s": 321.8,
+    "loadavg_before": [
+     4.45,
+     4.78,
+     8.56
+    ],
+    "loadavg_after": [
+     4.39,
+     4.89,
+     7.57
+    ]
+   },
+   "frames": {
+    "wall_s": 89.3,
+    "loadavg_before": [
+     0.28,
+     0.98,
+     2.57
+    ],
+    "loadavg_after": [
+     1.0,
+     1.0,
+     2.43
+    ]
+   },
+   "stalled": {
+    "wall_s": 37.6,
+    "loadavg_before": [
+     1.0,
+     1.0,
+     2.43
+    ],
+    "loadavg_after": [
+     0.93,
+     0.97,
+     2.37
+    ]
+   }
+  },
+  "overflow": [
+   {
+    "scenario": "overflow",
+    "ring": 262144,
+    "slow_clients": 0,
+    "produced_mib_s": 213.82,
+    "daemon_cpu_pct": 96.8,
+    "max_overflow_per_client_s": 0,
+    "mean_overflow_per_client_s": 0,
+    "slow_max_freeze_ms": null,
+    "fast_overflows": 0,
+    "fast_gaps": 0,
+    "rss_delta_mib": 0.4,
+    "echo_p50_ms": 0.551,
+    "echo_p99_ms": 0.816,
+    "echo_max_ms": 0.833,
+    "echo_samples": 120
+   },
+   {
+    "scenario": "overflow",
+    "ring": 262144,
+    "slow_clients": 1,
+    "produced_mib_s": 214.4,
+    "daemon_cpu_pct": 96.7,
+    "max_overflow_per_client_s": 1.0,
+    "mean_overflow_per_client_s": 1.0,
+    "slow_max_freeze_ms": 1000,
+    "fast_overflows": 0,
+    "fast_gaps": 0,
+    "rss_delta_mib": -0.1,
+    "echo_p50_ms": 0.531,
+    "echo_p99_ms": 0.905,
+    "echo_max_ms": 0.925,
+    "echo_samples": 120
+   },
+   {
+    "scenario": "overflow",
+    "ring": 262144,
+    "slow_clients": 4,
+    "produced_mib_s": 212.49,
+    "daemon_cpu_pct": 97.0,
+    "max_overflow_per_client_s": 1.0,
+    "mean_overflow_per_client_s": 1.0,
+    "slow_max_freeze_ms": 1000,
+    "fast_overflows": 0,
+    "fast_gaps": 0,
+    "rss_delta_mib": 0.0,
+    "echo_p50_ms": 0.545,
+    "echo_p99_ms": 0.916,
+    "echo_max_ms": 1.063,
+    "echo_samples": 120
+   },
+   {
+    "scenario": "overflow",
+    "ring": 262144,
+    "slow_clients": 16,
+    "produced_mib_s": 208.67,
+    "daemon_cpu_pct": 96.8,
+    "max_overflow_per_client_s": 1.0,
+    "mean_overflow_per_client_s": 1.0,
+    "slow_max_freeze_ms": 1003,
+    "fast_overflows": 0,
+    "fast_gaps": 0,
+    "rss_delta_mib": 0.1,
+    "echo_p50_ms": 0.576,
+    "echo_p99_ms": 0.867,
+    "echo_max_ms": 0.888,
+    "echo_samples": 120
+   },
+   {
+    "scenario": "overflow",
+    "ring": 1048576,
+    "slow_clients": 0,
+    "produced_mib_s": 213.45,
+    "daemon_cpu_pct": 97.0,
+    "max_overflow_per_client_s": 0,
+    "mean_overflow_per_client_s": 0,
+    "slow_max_freeze_ms": null,
+    "fast_overflows": 0,
+    "fast_gaps": 0,
+    "rss_delta_mib": -0.0,
+    "echo_p50_ms": 0.559,
+    "echo_p99_ms": 0.895,
+    "echo_max_ms": 0.901,
+    "echo_samples": 120
+   },
+   {
+    "scenario": "overflow",
+    "ring": 1048576,
+    "slow_clients": 1,
+    "produced_mib_s": 213.37,
+    "daemon_cpu_pct": 96.7,
+    "max_overflow_per_client_s": 1.0,
+    "mean_overflow_per_client_s": 1.0,
+    "slow_max_freeze_ms": 996,
+    "fast_overflows": 0,
+    "fast_gaps": 0,
+    "rss_delta_mib": -0.2,
+    "echo_p50_ms": 0.555,
+    "echo_p99_ms": 0.857,
+    "echo_max_ms": 0.872,
+    "echo_samples": 120
+   },
+   {
+    "scenario": "overflow",
+    "ring": 1048576,
+    "slow_clients": 4,
+    "produced_mib_s": 210.77,
+    "daemon_cpu_pct": 96.2,
+    "max_overflow_per_client_s": 1.0,
+    "mean_overflow_per_client_s": 1.0,
+    "slow_max_freeze_ms": 998,
+    "fast_overflows": 0,
+    "fast_gaps": 0,
+    "rss_delta_mib": 0.0,
+    "echo_p50_ms": 0.554,
+    "echo_p99_ms": 1.502,
+    "echo_max_ms": 1.885,
+    "echo_samples": 120
+   },
+   {
+    "scenario": "overflow",
+    "ring": 1048576,
+    "slow_clients": 16,
+    "produced_mib_s": 207.78,
+    "daemon_cpu_pct": 96.8,
+    "max_overflow_per_client_s": 1.0,
+    "mean_overflow_per_client_s": 1.0,
+    "slow_max_freeze_ms": 1002,
+    "fast_overflows": 0,
+    "fast_gaps": 0,
+    "rss_delta_mib": -0.0,
+    "echo_p50_ms": 0.517,
+    "echo_p99_ms": 0.913,
+    "echo_max_ms": 0.921,
+    "echo_samples": 120
+   }
+  ],
+  "frames": [
+   {
+    "scenario": "frames",
+    "load": "build",
+    "reader_kib_s": 64,
+    "seconds": 21,
+    "max_pty_frame_kib": 256.0,
+    "max_freeze_ms": 4014,
+    "overflows_per_s": 0.05,
+    "sibling_samples": 7,
+    "sibling_p50_ms": 3255.229,
+    "sibling_max_ms": 4012.708,
+    "sibling_unanswered_ms": 3098
+   },
+   {
+    "scenario": "frames",
+    "load": "tui",
+    "reader_kib_s": 256,
+    "seconds": 21,
+    "max_pty_frame_kib": 256.0,
+    "max_freeze_ms": 1003,
+    "overflows_per_s": 0.71,
+    "sibling_samples": 30,
+    "sibling_p50_ms": 808.07,
+    "sibling_max_ms": 1002.28,
+    "sibling_unanswered_ms": 149
+   },
+   {
+    "scenario": "frames",
+    "load": "flood200",
+    "reader_kib_s": 256,
+    "seconds": 21,
+    "max_pty_frame_kib": 122.1,
+    "max_freeze_ms": 1007,
+    "overflows_per_s": 1.0,
+    "sibling_samples": 285,
+    "sibling_p50_ms": 1.061,
+    "sibling_max_ms": 678.594,
+    "sibling_unanswered_ms": 302
+   },
+   {
+    "scenario": "frames",
+    "load": "flood200",
+    "reader_kib_s": 1024,
+    "seconds": 21,
+    "max_pty_frame_kib": 256.0,
+    "max_freeze_ms": 921,
+    "overflows_per_s": 1.0,
+    "sibling_samples": 370,
+    "sibling_p50_ms": 1.061,
+    "sibling_max_ms": 295.007,
+    "sibling_unanswered_ms": 281
+   }
+  ],
+  "stalled": [
+   {
+    "scenario": "stalled",
+    "ring": 262144,
+    "clients": 0,
+    "history": 0,
+    "rss_mib": 9.1,
+    "largest_frame_kib": 0.0,
+    "watcher_overflows": 0
+   },
+   {
+    "scenario": "stalled",
+    "ring": 262144,
+    "clients": 64,
+    "history": 0,
+    "rss_mib": 34.0,
+    "largest_frame_kib": 218.7,
+    "watcher_overflows": 0
+   },
+   {
+    "scenario": "stalled",
+    "ring": 1048576,
+    "clients": 0,
+    "history": 0,
+    "rss_mib": 9.8,
+    "largest_frame_kib": 0.0,
+    "watcher_overflows": 0
+   },
+   {
+    "scenario": "stalled",
+    "ring": 1048576,
+    "clients": 64,
+    "history": 0,
+    "rss_mib": 33.9,
+    "largest_frame_kib": 256.0,
+    "watcher_overflows": 0
+   },
+   {
+    "scenario": "stalled",
+    "ring": 1048576,
+    "clients": 0,
+    "history": 10000,
+    "rss_mib": 25.0,
+    "largest_frame_kib": 0.0,
+    "watcher_overflows": 0
+   },
+   {
+    "scenario": "stalled",
+    "ring": 1048576,
+    "clients": 64,
+    "history": 10000,
+    "rss_mib": 246.6,
+    "largest_frame_kib": 0.0,
+    "watcher_overflows": 0
+   }
+  ]
+ }
+}

@@ -1,0 +1,31 @@
+{
+  "label": "release-writer",
+  "state_fs": "ext2/ext3",
+  "panes": 1,
+  "mib_per_pane": 16,
+  "rows_per_pane": 99864,
+  "cols": 200,
+  "baseline_ping_median_s": 2.7050999051425606e-05,
+  "trials": [
+    {
+      "checkpoint_s": 5.09896856100022,
+      "max_ping_s": 4.896147440998902,
+      "pings_during": 6605,
+      "file_bytes": 17197395
+    },
+    {
+      "checkpoint_s": 5.237360356000863,
+      "max_ping_s": 4.854838728999312,
+      "pings_during": 12862,
+      "file_bytes": 17197395
+    },
+    {
+      "checkpoint_s": 5.478160446000402,
+      "max_ping_s": 4.847113294003066,
+      "pings_during": 21031,
+      "file_bytes": 17197395
+    }
+  ],
+  "median_checkpoint_s": 5.237360356000863,
+  "median_max_ping_s": 4.854838728999312
+}

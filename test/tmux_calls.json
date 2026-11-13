@@ -1,0 +1,44 @@
+{
+  "source": "Claude Code 2.1.319, TmuxBackend (agent teams); calls with -L are the external-session path, the rest the inside-tmux path. {PANE}/{WINDOW}/{TARGET}/{NEW} are filled in by the test.",
+  "external": [
+    ["-V"],
+    ["-L", "claude-swarm-1", "has-session", "-t", "claude-swarm"],
+    ["-L", "claude-swarm-1", "new-session", "-d", "-s", "claude-swarm", "-n", "swarm-view", "-P", "-F", "#{pane_id}", "--", "cat"],
+    ["-L", "claude-swarm-1", "has-session", "-t", "claude-swarm"],
+    ["-L", "claude-swarm-1", "list-panes", "-t", "claude-swarm:swarm-view", "-F", "#{pane_id}"],
+    ["-L", "claude-swarm-1", "split-window", "-d", "-t", "{FIRST}", "-v", "-P", "-F", "#{pane_id}", "--", "cat"]
+  ],
+  "inside": [
+    ["display-message", "-p", "#{pane_id}"],
+    ["display-message", "-t", "{PANE}", "-p", "#{window_id}"],
+    ["list-panes", "-t", "{WINDOW}", "-F", "#{pane_id}"],
+    ["split-window", "-d", "-t", "{PANE}", "-h", "-l", "70%", "-P", "-F", "#{pane_id}", "--", "cat"],
+    ["list-panes", "-t", "{WINDOW}", "-F", "#{pane_id}"],
+    ["split-window", "-d", "-t", "{SECOND}", "-v", "-P", "-F", "#{pane_id}", "--", "cat"]
+  ],
+  "per_teammate": [
+    ["select-pane", "-t", "{NEW}", "-T", "researcher"],
+    ["respawn-pane", "-k", "-t", "{NEW}", "--", "echo teammate-ran; sleep 30"],
+    ["send-keys", "-t", "{NEW}", "-l", "hello"],
+    ["send-keys", "-t", "{NEW}", "Enter"],
+    ["capture-pane", "-t", "{NEW}", "-p"],
+    ["capture-pane", "-t", "{NEW}", "-p", "-S", "-20"],
+    ["kill-pane", "-t", "{NEW}"]
+  ],
+  "rejected": [
+    ["kill-server"],
+    ["select-layout", "-t", "{WINDOW}", "tiled"],
+    ["resize-pane", "-t", "{PANE}", "-x", "30%"],
+    ["set-option", "-p", "-t", "{PANE}", "pane-border-style", "fg=red"],
+    ["set-option", "-p", "-t", "{PANE}", "remain-on-exit", "failed"],
+    ["split-window", "-b", "-t", "{PANE}"],
+    ["split-window", "-t", "{PANE}", "-l", "20", "--", "cat"],
+    ["select-pane", "-t", "{PANE}"],
+    ["send-keys", "-t", "{PANE}", "C-Up"],
+    ["capture-pane", "-t", "{PANE}"],
+    ["capture-pane", "-p", "-J", "-t", "{PANE}"],
+    ["display-message", "-p", "#{pane_nope}"],
+    ["respawn-pane", "-k", "-t", "{PANE}", "--", "true"],
+    ["new-session", "-s", "attached"]
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "tool": "venomx",
+  "defaults": ".{ .grants = .{ .isolation = true } }",
+  "read": {"args": ["pane", "list"], "result": {"panes": []}, "mcp": {"name": "pane_dlist", "arguments": {}}},
+  "usage_error": {"args": ["pane", "split", "--pane=p0", "--axis=invalid", "--argv=[\"/bin/sh\"]"], "code": "invalid_params.enum"},
+  "mutation": {
+    "args": ["session", "create", "--name=conformance"],
+    "result": {"session": "s0", "name": "conformance"},
+    "mcp": {"name": "session_dcreate", "arguments": {"name": "conformance"}},
+    "observe": {"args": ["session", "list"], "before": {"sessions": []}, "after": {"sessions": [{"session": "s0", "name": "conformance"}]}}
+  },
+  "stream": {"kind": "events"},
+  "config": {
+    "key": "grants.unknown", "default": ".{.{.right=.read,.scope=\"*\"}}", "value": ".{.{.right=.read,.scope=\"config:root\"}}",
+    "observe": {
+      "args": ["whoami"],
+      "before": {"principal": "unknown", "kind": "unknown", "parent": null, "grants": [{"right": "read", "scope": "*"}], "namespace": "user", "expires": null},
+      "after": {"principal": "unknown", "kind": "unknown", "parent": null, "grants": [{"right": "read", "scope": "config:root"}], "namespace": "user", "expires": null}
+    }
+  }
+}
