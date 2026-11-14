@@ -116,43 +116,41 @@ own terminal pane, driven with tmux. With the shim, those panes are venomx
 panes: you can attach to them, read them with `pane capture`, tag them and
 watch them in the status line like any other pane.
 
-Agent teams are experimental in Claude Code. Turn them on and choose
-split-pane mode in `~/.claude/settings.json`:
+Agent teams are experimental in Claude Code. Turn them on in
+`~/.claude/settings.json`:
 
 ```json
 {
-  "env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" },
-  "teammateMode": "tmux"
+  "env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" }
 }
 ```
 
-Use `"tmux"`, not the default `"auto"`. In `auto` mode Claude Code only uses
-panes when `$TMUX` is set, and venomx panes don't set it, so teammates would
-run in-process in the lead's terminal instead. You can also pass
-`--teammate-mode tmux` on the command line for one session.
+Claude Code only uses tmux panes when `$TMUX` is set, and venomx panes don't
+set it. Without it, the default `"auto"` teammate mode runs the teammates
+in-process in the lead's terminal, and `"teammateMode": "tmux"` fails with
+`teammateMode is already set to "tmux" ... but $TMUX is empty`.
 
-Claude Code then picks one of two layouts, depending on whether `$TMUX` is
-set.
-
-### Teammates in a session of their own
-
-This is the default inside venomx, because `$TMUX` is not set. Start the lead
-in a venomx pane with the shim on `PATH`:
+So start the lead in a venomx pane with the shim on `PATH` and `TMUX` set for
+the `claude` process:
 
 ```sh
 venomx new --name lead
 # in the new pane:
-PATH=~/.local/venomx-shim:$PATH claude
+PATH=~/.local/venomx-shim:$PATH TMUX=venomx,0,0 claude
 ```
+
+`TMUX` must have the shape tmux itself uses, `<socket>,<pid>,<session>`;
+`venomx,0,0` works. The shim doesn't read the value: the calling pane comes
+from `VENOMX_PANE`. With `TMUX` set, `teammateMode` can stay `"auto"`.
 
 Ask the lead for a team, for example *"Create an agent team: one teammate
 reviews the parser, one writes tests for it."* Behind the scenes Claude Code
 runs:
 
 ```sh
-tmux -L claude-swarm-<pid> has-session -t claude-swarm     # fails: no such session yet
-tmux -L claude-swarm-<pid> new-session -d -s claude-swarm -n swarm-view -P -F '#{pane_id}' -- cat   # prints %4
-tmux -L claude-swarm-<pid> split-window -d -t %4 -v -P -F '#{pane_id}' -- cat   # prints %5
+tmux display-message -p '#{pane_id}'                         # the lead's own pane
+tmux split-window -d -h -l 70% -t <lead> -P -F '#{pane_id}' -- cat   # first teammate, prints %5
+tmux split-window -d -v -t %5 -P -F '#{pane_id}' -- cat              # the next ones stack below
 # then, for each teammate pane (%5 here):
 tmux select-pane -t %5 -T reviewer
 tmux respawn-pane -k -t %5 -- '<teammate command>'
@@ -163,35 +161,11 @@ tmux capture-pane -t %5 -p
 tmux kill-pane -t %5
 ```
 
-venomx creates a session named `claude-swarm` with a window `swarm-view`, one
-parked pane per teammate, and starts each teammate in its pane. Watch them
-from another terminal:
-
-```sh
-venomx session list                    # find the claude-swarm session's id
-venomx attach --session <id>
-```
-
-When the lead shuts a teammate down, `kill-pane` removes its pane; when the
-last one goes, the `swarm-view` window and the `claude-swarm` session go too.
-
-`-L` is ignored, so every lead on one daemon shares the one `claude-swarm`
-session. Their teammates sit side by side in it.
-
-### Teammates beside the lead
-
-To get the teammates as splits next to the lead, in the lead's own window,
-set `TMUX` for the Claude Code process. Any non-empty value works; the shim
-doesn't read it, and the calling pane comes from `VENOMX_PANE`:
-
-```sh
-PATH=~/.local/venomx-shim:$PATH TMUX=venomx claude
-```
-
-Claude Code now asks for its own pane (`display-message -p '#{pane_id}'`),
-splits it with `split-window -h -l 70%` so the lead keeps about 30 percent of
-the window, and stacks the remaining teammates with `split-window -v`. The
-rest works as above. In this mode `teammateMode` can stay `"auto"`.
+The teammates appear as splits next to the lead, in the lead's own window:
+the lead keeps about 30 percent of it and the teammates share the rest.
+Watch them from another terminal with `venomx attach`, or read one with
+`venomx pane capture`. When the lead shuts a teammate down, `kill-pane`
+removes its pane.
 
 Set `TMUX` only on the `claude` command, not in your shell profile: programs
 that see `$TMUX` assume they run inside tmux and may call tmux commands the
