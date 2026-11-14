@@ -18,8 +18,9 @@ tar -xzf venomx-x86_64-linux.tar.gz
 install -m 755 venomx-x86_64-linux/venomx ~/.local/bin/venomx
 ```
 
-Releases are cut by pushing a tag on `main`; the release workflow tests the
-tagged commit, builds the binaries and publishes them. There is no CI on pull
+Releases are cut by pushing a version tag on `main` (`v0.0.1-alpha.1`, then
+`v0.0.1`); the release workflow tests the tagged commit, builds the binary and
+publishes it. Tags with a `-` become pre-releases once a stable release exists. There is no CI on pull
 requests: run `zig fmt --check .` and `zig build test` locally before opening one.
 
 ## Build
