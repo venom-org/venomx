@@ -1,10 +1,11 @@
 name: release
 
-# Pushing a tag publishes a release. The tag must point at a commit on main;
-# a tag ruleset limits who can push tags. Nothing else triggers this workflow.
+# Pushing a v* tag publishes a release. The tag must be a semver version
+# (v0.0.1, v0.0.1-alpha.3) and point at a commit on main; a tag ruleset limits
+# who can push tags. Nothing else triggers this workflow.
 on:
   push:
-    tags: ['**']
+    tags: ['v*']
 
 permissions:
   contents: read
@@ -24,9 +25,13 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Tag points at a commit on main
+      - name: Tag is a version on main
         run: |
           set -euo pipefail
+          if ! [[ "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::tag ${GITHUB_REF_NAME} is not a version like v0.0.1 or v0.0.1-alpha.1"
+            exit 1
+          fi
           if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
             echo "::error::tag ${GITHUB_REF_NAME} (${GITHUB_SHA}) is not on main"
             exit 1
@@ -113,12 +118,25 @@ jobs:
         run: sha256sum venomx-*.tar.gz > sha256sums.txt
 
       # Asset names carry no version, so releases/latest/download/<asset>
-      # always points at the newest release.
+      # serves whichever release is marked latest. A pre-release tag (one with
+      # a '-', like v0.0.2-alpha.1) is marked latest only while there is no
+      # stable release yet; after that it is published as a pre-release and
+      # latest stays on the newest stable release.
       - name: Publish the release
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.ref_name }}
         run: |
+          set -euo pipefail
+          kind=(--latest)
+          if [[ "$TAG" == *-* ]]; then
+            stable="$(gh release list --repo "$GITHUB_REPOSITORY" --exclude-drafts \
+              --exclude-pre-releases --limit 1 --json tagName --jq '.[0].tagName // ""')"
+            if [ -n "$stable" ]; then
+              kind=(--prerelease --latest=false)
+            fi
+          fi
+          echo "publishing ${TAG} with ${kind[*]}"
           gh release create "$TAG" dist/*.tar.gz dist/sha256sums.txt \
-            --repo "$GITHUB_REPOSITORY" --verify-tag --latest \
+            --repo "$GITHUB_REPOSITORY" --verify-tag "${kind[@]}" \
             --title "venomx $TAG" --generate-notes
