@@ -19,7 +19,7 @@
 //! pane started with exactly the command `cat` is started as a parked
 //! launcher (tag `tmux.state=parked`) that reads one command line and execs
 //! it; `respawn-pane` on a parked pane sends that line. Respawning any
-//! other pane fails clearly. See docs/tmux-shim.md.
+//! other pane fails clearly. See docs/site/tmux.md.
 const std = @import("std");
 const proto = @import("proto");
 const standalone = @import("standalone.zig");
