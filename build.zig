@@ -22,7 +22,8 @@ pub fn build(b: *std.Build) void {
     // Vt and pane_stream come from the same venom-term instance, so there is
     // one ghostty and one Vt type.
     const term_full = b.dependency("venom_term", .{ .target = target, .optimize = optimize });
-    const executable = b.addExecutable(.{ .name = "venomx", .root_module = b.createModule(.{ .root_source_file = b.path("src/main.zig"), .target = target, .optimize = optimize, .link_libc = true }) });
+    const strip = b.option(bool, "strip", "Strip debug info from the venomx binary (release builds)");
+    const executable = b.addExecutable(.{ .name = "venomx", .root_module = b.createModule(.{ .root_source_file = b.path("src/main.zig"), .target = target, .optimize = optimize, .link_libc = true, .strip = strip }) });
     executable.root_module.addImport("vt", term_full.module("vt"));
     executable.root_module.addImport("pane_stream", term_full.module("pane_stream"));
     executable.root_module.addImport("venom-term", term_full.module("venom-term"));
