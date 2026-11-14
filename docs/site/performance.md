@@ -1,6 +1,6 @@
 ---
 title: Performance
-order: 8
+order: 9
 ---
 
 venomx keeps a full terminal emulator per pane in the daemon and another in
