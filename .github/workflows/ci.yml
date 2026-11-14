@@ -1,9 +1,9 @@
 name: ci
 
+# Manual only, to save Actions minutes: PRs and pushes to main run nothing.
+# The release workflow runs the same checks before it publishes binaries.
 on:
-  pull_request:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read

@@ -3,22 +3,35 @@ title: Getting started
 order: 1
 ---
 
-## Build
+## Download
 
-venomx is written in Zig 0.17.0. It builds against the ecosystem's shared
-modules by relative path, so clone `venom-std` and `venom-term` next to it:
+venomx is in alpha. Each release ships a static Linux x86_64 binary that runs on
+any distribution:
+
+- [venomx-x86_64-linux.tar.gz](https://github.com/venom-org/venomx/releases/latest/download/venomx-x86_64-linux.tar.gz)
+- [sha256sums.txt](https://github.com/venom-org/venomx/releases/latest/download/sha256sums.txt)
+
+Every release, with its notes, is on the
+[releases page](https://github.com/venom-org/venomx/releases).
 
 ```sh
-git clone https://github.com/venom-org/venom-std
-git clone https://github.com/venom-org/venom-term
+curl -fsSLO https://github.com/venom-org/venomx/releases/latest/download/venomx-x86_64-linux.tar.gz
+curl -fsSLO https://github.com/venom-org/venomx/releases/latest/download/sha256sums.txt
+sha256sum --check --ignore-missing sha256sums.txt
+tar -xzf venomx-x86_64-linux.tar.gz
+install -m 755 venomx-x86_64-linux/venomx ~/.local/bin/venomx
+```
+
+## Build from source
+
+venomx is written in Zig 0.17 (the exact version is in `.zigversion`).
+`zig build` fetches `venom-std` and `venom-term` at the commits pinned in
+`build.zig.zon`:
+
+```sh
 git clone https://github.com/venom-org/venomx
 cd venomx
 zig build -Doptimize=ReleaseFast
-```
-
-The binary is `zig-out/bin/venomx`. Put it on your `PATH`:
-
-```sh
 install -m 755 zig-out/bin/venomx ~/.local/bin/venomx
 ```
 
