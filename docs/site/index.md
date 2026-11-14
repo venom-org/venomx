@@ -65,5 +65,7 @@ the socket. See [Isolation](isolation.md).
   when to keep agents apart.
 - [Daemon lifetime and recovery](daemon.md): who starts the daemon, how panes
   end, checkpoints.
+- [tmux shim](tmux.md): run agents that only know tmux, such as Claude
+  Code's agent teams.
 - [Performance](performance.md): measured against tmux, zellij and tuios.
 - [Command reference](reference/commands.md): every verb and flag.

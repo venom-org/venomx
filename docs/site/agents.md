@@ -232,9 +232,7 @@ as `venomx tmux <command>`, or link it under the name `tmux` on the pane's
 mkdir -p ~/.local/venomx-shim && ln -s "$(command -v venomx)" ~/.local/venomx-shim/tmux
 ```
 
-The shim covers `new-session -d`, `new-window`, `split-window`,
-`list-panes`, `list-windows`, `display-message -p`, `kill-pane`,
-`send-keys`, `capture-pane -p`, `select-pane -T`, `has-session` and
-`respawn-pane -k`, with tmux's target and `#{format}` syntax. It runs every
-command as the calling pane's own principal and never elevates. Anything else
-fails with exit 1 and names what it does not support.
+It runs every command as the calling pane's own principal and never
+elevates. Anything else fails with exit 1 and names what it does not support.
+[tmux shim](tmux.md) lists the supported commands and walks through running
+Claude Code teammates in venomx panes.
