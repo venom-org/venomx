@@ -5,22 +5,47 @@ order: 1
 
 ## Download
 
-venomx is in alpha. Each release ships a static Linux x86_64 binary that runs on
-any distribution:
+venomx is in alpha. Each release ships two binaries:
 
-- [venomx-x86_64-linux.tar.gz](https://github.com/venom-org/venomx/releases/latest/download/venomx-x86_64-linux.tar.gz)
-- [sha256sums.txt](https://github.com/venom-org/venomx/releases/latest/download/sha256sums.txt)
+| Platform | Download |
+|---|---|
+| Linux x86_64 (static, any distribution) | [venomx-x86_64-linux.tar.gz](https://github.com/venom-org/venomx/releases/latest/download/venomx-x86_64-linux.tar.gz) |
+| macOS on Apple silicon (M1 and later, macOS 13 or later) | [venomx-aarch64-macos.tar.gz](https://github.com/venom-org/venomx/releases/latest/download/venomx-aarch64-macos.tar.gz) |
 
+Both are listed in
+[sha256sums.txt](https://github.com/venom-org/venomx/releases/latest/download/sha256sums.txt).
 Every release, with its notes, is on the
 [releases page](https://github.com/venom-org/venomx/releases).
+
+On Linux:
 
 ```sh
 curl -fsSLO https://github.com/venom-org/venomx/releases/latest/download/venomx-x86_64-linux.tar.gz
 curl -fsSLO https://github.com/venom-org/venomx/releases/latest/download/sha256sums.txt
 sha256sum --check --ignore-missing sha256sums.txt
 tar -xzf venomx-x86_64-linux.tar.gz
+mkdir -p ~/.local/bin
 install -m 755 venomx-x86_64-linux/venomx ~/.local/bin/venomx
 ```
+
+On macOS:
+
+```sh
+curl -fsSLO https://github.com/venom-org/venomx/releases/latest/download/venomx-aarch64-macos.tar.gz
+curl -fsSLO https://github.com/venom-org/venomx/releases/latest/download/sha256sums.txt
+grep venomx-aarch64-macos.tar.gz sha256sums.txt | shasum -a 256 --check
+tar -xzf venomx-aarch64-macos.tar.gz
+mkdir -p ~/.local/bin
+install -m 755 venomx-aarch64-macos/venomx ~/.local/bin/venomx
+```
+
+The macOS binary is not notarized. `curl` doesn't mark what it downloads, so
+the commands above just work. If you download the tarball with a browser
+instead, macOS blocks the binary the first time it runs; clear the quarantine
+flag with `xattr -d com.apple.quarantine ~/.local/bin/venomx`.
+
+If `~/.local/bin` isn't on your `PATH`, add it to your shell's startup file
+(for zsh, the macOS default: `echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc`).
 
 ## Build from source
 
