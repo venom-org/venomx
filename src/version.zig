@@ -1,4 +1,5 @@
-//! The venomx version, shared by `--version`, the fangs caption and XTVERSION.
+//! The venomx version, shared by `--version`, the doctor header, the fangs
+//! caption, XTVERSION and the wire hello. Set at build time with
+//! `-Dversion=<semver>`; builds without it report a `-dev` version.
 
-/// The wire hello says the same until there is a release process.
-pub const version = "0.0.0";
+pub const version: []const u8 = @import("build_options").version;

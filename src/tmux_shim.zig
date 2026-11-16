@@ -953,7 +953,7 @@ pub const Daemon = struct {
             .tool = "venomx",
             .path = .{ .socket = null, .environ = environ },
             .protocol = .ndjson,
-            .hello = .{ .identity = .{ .name = "venomx-tmux", .version = "0.0.0" }, .caps = &.{} },
+            .hello = .{ .identity = .{ .name = "venomx-tmux", .version = @import("version.zig").version }, .caps = &.{} },
         });
         errdefer client.deinit();
         while (!try client.pollHello(100)) if (stopped.load(.monotonic)) return error.Interrupted;

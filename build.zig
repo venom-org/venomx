@@ -1,4 +1,5 @@
 const std = @import("std");
+const zon = @import("build.zig.zon");
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
@@ -6,12 +7,19 @@ pub fn build(b: *std.Build) void {
     const term = b.dependency("venom_term", .{ .target = target, .optimize = optimize, .headless = true });
     // The daemon test seam is compiled only into test builds.
     const test_seams = b.option(bool, "test-seams", "Compile the daemon test seam (integration builds only)") orelse false;
+    // Release builds pass -Dversion=<semver> (the tag without its leading v).
+    // Without it the build reports the build.zig.zon version plus "-dev".
+    const version = b.option([]const u8, "version", "Version the binary reports, a semantic version like 1.2.3 or 1.2.3-rc.1") orelse b.fmt("{s}-dev", .{zon.version});
+    _ = std.SemanticVersion.parse(version) catch |err| std.process.fatal("-Dversion={s} is not a semantic version ({s})", .{ version, @errorName(err) });
     const options = b.addOptions();
     options.addOption(bool, "test_seams", test_seams);
+    options.addOption([]const u8, "version", version);
     const no_seams = b.addOptions();
     no_seams.addOption(bool, "test_seams", false);
+    no_seams.addOption([]const u8, "version", version);
     const with_seams = b.addOptions();
     with_seams.addOption(bool, "test_seams", true);
+    with_seams.addOption([]const u8, "version", version);
     const mod = b.addModule("pane-stream", .{ .root_source_file = b.path("src/root.zig"), .target = target, .optimize = optimize, .link_libc = true });
     mod.addOptions("build_options", no_seams);
     mod.addImport("proto", shared.module("proto"));

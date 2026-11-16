@@ -95,11 +95,17 @@ jobs:
         with:
           version: ${{ needs.check.outputs.zig }}
 
+      # The tag without its leading v (v0.0.1-alpha.1 -> 0.0.1-alpha.1); the
+      # same value builds the binary on both platforms and is asserted below.
       - name: Build venomx
-        run: zig build -Doptimize=ReleaseFast -Dstrip=true -Dtarget=${{ matrix.target }} --summary all
+        env:
+          TAG: ${{ github.ref_name }}
+        run: zig build -Doptimize=ReleaseFast -Dstrip=true -Dtarget=${{ matrix.target }} -Dversion="${TAG#v}" --summary all
 
       - name: Smoke test
-        run: test/release_smoke.sh zig-out/bin/venomx
+        env:
+          TAG: ${{ github.ref_name }}
+        run: test/release_smoke.sh zig-out/bin/venomx "${TAG#v}"
 
       - name: Package
         env:

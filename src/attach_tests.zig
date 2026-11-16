@@ -486,7 +486,7 @@ test "the empty state of a session with no panes draws the fangs; a populated on
     const none = try render(&app);
     defer a.free(none);
     try expect(std.mem.indexOf(u8, none, "has no windows") != null);
-    try expect(std.mem.indexOf(u8, none, "venomx 0.0.0") != null);
+    try expect(std.mem.indexOf(u8, none, "venomx " ++ @import("version.zig").version) != null);
     try expect(std.mem.indexOf(u8, none, "━━━━━━  ━━━━━━") != null and std.mem.indexOf(u8, none, "●") != null);
     try app.control("{\"id\":2,\"item\":{\"type\":\"window.created\",\"data\":{\"window\":\"w0\",\"session\":\"s0\",\"name\":\"\",\"revision\":1,\"nodes\":[{\"kind\":\"pane\",\"pane\":\"p0\"}]}}}");
     const full = try render(&app);
