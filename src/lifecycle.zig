@@ -211,6 +211,7 @@ pub fn Launcher(comptime Store: type, comptime validate: anytype, comptime valid
             }
             const envp = try a.allocSentinel(?[*:0]const u8, envs.items.len, null);
             @memcpy(envp, envs.items);
+            const exe = try selfExe(a);
             var fds: [2]c.fd_t = undefined;
             if (@import("os.zig").pipe2(&fds, .{ .CLOEXEC = true, .NONBLOCK = true }) != 0) return error.StartupFailed;
             errdefer _ = c.close(fds[0]);
@@ -228,7 +229,7 @@ pub fn Launcher(comptime Store: type, comptime validate: anytype, comptime valid
                 if (c.dup2(devnull, 0) < 0 or c.dup2(fds[1], 1) < 0 or c.dup2(devnull, 2) < 0) c._exit(127);
                 // The record pipe is blocking for the daemon's single final write.
                 _ = c.fcntl(1, c.F.SETFL, @as(c_int, 0));
-                _ = execve("/proc/self/exe", &argv, envp.ptr);
+                _ = execve(exe, &argv, envp.ptr);
                 c._exit(127);
             }
             self.pid = pid;
@@ -288,6 +289,22 @@ pub fn Launcher(comptime Store: type, comptime validate: anytype, comptime valid
     };
 }
 extern "c" fn execve([*:0]const u8, [*:null]const ?[*:0]const u8, [*:null]const ?[*:0]const u8) c_int;
+
+/// The path the launcher execs to start a daemon from this very binary.
+/// Linux has `/proc/self/exe`; macOS has no procfs, so ask dyld instead.
+fn selfExe(a: std.mem.Allocator) ![*:0]const u8 {
+    if (@import("builtin").os.tag != .macos) return "/proc/self/exe";
+    var size: u32 = 1024;
+    while (true) {
+        const buf = try a.allocSentinel(u8, size, 0);
+        var n: u32 = size;
+        if (c._NSGetExecutablePath(buf.ptr, &n) == 0) return buf.ptr;
+        // Too small: dyld wrote the size it needs into `n`.
+        a.free(buf);
+        if (n <= size) return error.StartupFailed;
+        size = n;
+    }
+}
 
 test "lifecycle: a missing marker directory holds no marker and is not created" {
     const a = std.testing.allocator;

@@ -4,13 +4,14 @@ A headless terminal multiplexer that agents can drive. One `venomx` binary serve
 
 Part of [Venom](https://venom.tools). Status: **alpha**; interfaces may still change. Documentation: [venom.tools](https://venom.tools) (source in [docs/site/](docs/site/index.md)).
 
-Download a static Linux x86_64 binary from the [latest release](https://github.com/venom-org/venomx/releases/latest) (see [Download](#download)), or build from source with the Zig version in `.zigversion` (see [Build](#build)).
+Download a static Linux x86_64 binary or a macOS Apple silicon binary from the [latest release](https://github.com/venom-org/venomx/releases/latest) (see [Download](#download)), or build from source with the Zig version in `.zigversion` (see [Build](#build)).
 
 Licensed under the [MIT License](LICENSE). To report a vulnerability, see [SECURITY.md](SECURITY.md).
 
 ## Download
 
-Each release has a static Linux x86_64 binary and a `sha256sums.txt`:
+Each release has a static Linux x86_64 binary, a macOS Apple silicon (arm64)
+binary and a `sha256sums.txt`. On Linux:
 
 ```sh
 curl -fsSLO https://github.com/venom-org/venomx/releases/latest/download/venomx-x86_64-linux.tar.gz
@@ -18,9 +19,21 @@ tar -xzf venomx-x86_64-linux.tar.gz
 install -m 755 venomx-x86_64-linux/venomx ~/.local/bin/venomx
 ```
 
+On macOS (M1 and later, macOS 13 or later):
+
+```sh
+curl -fsSLO https://github.com/venom-org/venomx/releases/latest/download/venomx-aarch64-macos.tar.gz
+tar -xzf venomx-aarch64-macos.tar.gz
+mkdir -p ~/.local/bin
+install -m 755 venomx-aarch64-macos/venomx ~/.local/bin/venomx
+```
+
+The macOS binary is not notarized: if a browser downloaded it, clear the
+quarantine flag with `xattr -d com.apple.quarantine ~/.local/bin/venomx`.
+
 Releases are cut by pushing a version tag on `main` (`v0.0.1-alpha.1`, then
-`v0.0.1`); the release workflow tests the tagged commit, builds the binary and
-publishes it. Tags with a `-` become pre-releases once a stable release exists. There is no CI on pull
+`v0.0.1`); the release workflow tests the tagged commit, builds the Linux and macOS
+binaries, smoke-tests each on its own platform and publishes them. Tags with a `-` become pre-releases once a stable release exists. There is no CI on pull
 requests: run `zig fmt --check .` and `zig build test` locally before opening one.
 
 ## Build

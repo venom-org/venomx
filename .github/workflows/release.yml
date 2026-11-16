@@ -74,7 +74,18 @@ jobs:
 
   build:
     needs: check
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          # musl: one static binary that runs on any Linux distribution.
+          - os: ubuntu-latest
+            target: x86_64-linux-musl
+            asset: venomx-x86_64-linux
+          # Apple Silicon, built natively so the smoke test runs on macOS.
+          - os: macos-15
+            target: aarch64-macos
+            asset: venomx-aarch64-macos
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -84,22 +95,25 @@ jobs:
         with:
           version: ${{ needs.check.outputs.zig }}
 
-      # musl: one static binary that runs on any Linux distribution.
       - name: Build venomx
-        run: zig build -Doptimize=ReleaseFast -Dstrip=true -Dtarget=x86_64-linux-musl --summary all
+        run: zig build -Doptimize=ReleaseFast -Dstrip=true -Dtarget=${{ matrix.target }} --summary all
+
+      - name: Smoke test
+        run: test/release_smoke.sh zig-out/bin/venomx
 
       - name: Package
+        env:
+          ASSET: ${{ matrix.asset }}
         run: |
           set -euo pipefail
-          name="venomx-x86_64-linux"
-          mkdir -p "dist/${name}"
-          cp zig-out/bin/venomx LICENSE README.md "dist/${name}/"
-          tar -C dist -czf "dist/${name}.tar.gz" "${name}"
+          mkdir -p "dist/${ASSET}"
+          cp zig-out/bin/venomx LICENSE README.md "dist/${ASSET}/"
+          tar -C dist -czf "dist/${ASSET}.tar.gz" "${ASSET}"
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: venomx-x86_64-linux
-          path: dist/venomx-x86_64-linux.tar.gz
+          name: ${{ matrix.asset }}
+          path: dist/${{ matrix.asset }}.tar.gz
           if-no-files-found: error
 
   release:
@@ -110,12 +124,18 @@ jobs:
     steps:
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
-          name: venomx-x86_64-linux
+          pattern: venomx-*
+          merge-multiple: true
           path: dist
 
       - name: Checksums
         working-directory: dist
-        run: sha256sum venomx-*.tar.gz > sha256sums.txt
+        run: |
+          set -euo pipefail
+          for asset in venomx-x86_64-linux.tar.gz venomx-aarch64-macos.tar.gz; do
+            test -f "$asset" || { echo "::error::missing $asset"; exit 1; }
+          done
+          sha256sum venomx-*.tar.gz > sha256sums.txt
 
       # Asset names carry no version, so releases/latest/download/<asset>
       # serves whichever release is marked latest. A pre-release tag (one with
