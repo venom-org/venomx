@@ -45,6 +45,30 @@ jobs:
       - name: zig build test
         run: zig build test --summary all
 
+  # The release's macOS build and smoke test, to check macOS on a branch
+  # before tagging. `zig build test` stays Linux-only: its Python suites
+  # read /proc.
+  macos:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Read .zigversion
+        id: pin
+        run: echo "version=$(tr -d '[:space:]' < .zigversion)" >> "$GITHUB_OUTPUT"
+
+      - uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29 # v2.2.1
+        with:
+          version: ${{ steps.pin.outputs.version }}
+
+      - name: Build venomx
+        run: zig build -Doptimize=ReleaseFast -Dstrip=true -Dtarget=aarch64-macos --summary all
+
+      - name: Smoke test
+        run: test/release_smoke.sh zig-out/bin/venomx
+
   policy:
     runs-on: ubuntu-latest
     steps:
