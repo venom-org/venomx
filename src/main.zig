@@ -530,7 +530,7 @@ const Daemon = struct {
         var dispatcher = try proto.Dispatcher.init(self.a, &App.schema, &bindings, .{}, null);
         defer dispatcher.deinit();
         streams.control = dispatcher.handler();
-        var server = try proto.Server.init(self.a, .{ .hello = .{ .identity = .{ .name = "venomx", .version = "0.0.0" }, .caps = &.{ "cancel", stream.capability }, .schema = &digest }, .path = path, .registry = &registry, .subreaper = true }, streams.handler());
+        var server = try proto.Server.init(self.a, .{ .hello = .{ .identity = .{ .name = "venomx", .version = @import("version.zig").version }, .caps = &.{ "cancel", stream.capability }, .schema = &digest }, .path = path, .registry = &registry, .subreaper = true }, streams.handler());
         defer server.deinit();
         product.socket = server.path;
         // Only the socket lock holder touches its store; retention
@@ -818,7 +818,7 @@ test "--version prints the fangs, or only JSON with --json in either order" {
     for ([_][]const []const u8{ &.{ "--version", "--json" }, &.{ "--json", "--version" } }) |args| {
         w = .fixed(&buf);
         try std.testing.expect(try printVersion(args, &env, true, &w));
-        try std.testing.expectEqualStrings("{\"version\":\"0.0.0\"}\n", w.buffered());
+        try std.testing.expectEqualStrings("{\"version\":\"" ++ @import("version.zig").version ++ "\"}\n", w.buffered());
     }
     w = .fixed(&buf);
     try std.testing.expect(!try printVersion(&.{ "doctor", "--version" }, &env, true, &w));
@@ -843,7 +843,7 @@ test "the doctor header frames a human report only; NO_COLOR turns colour off" {
     var buf: [2048]u8 = undefined;
     var w: std.Io.Writer = .fixed(&buf);
     try printDoctor(&env, true, "[ok] a: b\n", &w);
-    try std.testing.expect(std.mem.indexOf(u8, w.buffered(), "venomx 0.0.0 doctor") != null);
+    try std.testing.expect(std.mem.indexOf(u8, w.buffered(), "venomx " ++ @import("version.zig").version ++ " doctor") != null);
     try std.testing.expect(std.mem.endsWith(u8, w.buffered(), "\n\n[ok] a: b\n"));
     try std.testing.expect(std.mem.indexOf(u8, w.buffered(), "\x1b[") != null);
     // A usage error or anything else that is not a report passes unframed.

@@ -194,7 +194,7 @@ fn presentWith(ctx: Context, a: std.mem.Allocator, first: Args, comptime runner:
 fn serverGone(ctx: Context, path: proto.SocketOptions) bool {
     const deadline = nowMs() + 500;
     while (nowMs() < deadline) {
-        var client = proto.Client.init(ctx.gpa, .{ .tool = "venomx", .path = .{ .socket = path.socket, .environ = ctx.environ }, .hello = .{ .identity = .{ .name = "venomx-attach", .version = "0.0.0" }, .caps = &.{} } }) catch |err| return err == error.NotRunning;
+        var client = proto.Client.init(ctx.gpa, .{ .tool = "venomx", .path = .{ .socket = path.socket, .environ = ctx.environ }, .hello = .{ .identity = .{ .name = "venomx-attach", .version = @import("version.zig").version }, .caps = &.{} } }) catch |err| return err == error.NotRunning;
         client.deinit();
         var none = [_]posix.pollfd{};
         _ = posix.poll(&none, 20) catch {};
@@ -380,7 +380,7 @@ fn connectWith(ctx: Context, path: proto.SocketOptions, owner: ?std.process.Envi
             .tool = "venomx",
             .path = .{ .socket = path.socket, .environ = env orelse ctx.environ },
             .protocol = protocol,
-            .hello = .{ .identity = .{ .name = "venomx-attach", .version = "0.0.0" }, .caps = &caps },
+            .hello = .{ .identity = .{ .name = "venomx-attach", .version = @import("version.zig").version }, .caps = &caps },
         });
         const ok = blk: {
             while (true) {
