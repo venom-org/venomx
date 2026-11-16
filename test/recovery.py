@@ -90,8 +90,13 @@ class Case:
         key = hashlib.sha256(str(self.socket).encode()).hexdigest()
         return self.root / 'state' / 'venomx' / 'recovery' / key
 
-    def files(self):
-        return sorted(p.name for p in self.store.iterdir()) if self.store.exists() else []
+    def files(self, temporary=False):
+        """The store's file names. A running daemon writes each checkpoint to a
+        `.tmp-` file and renames it into place, so a listing can catch one in
+        flight; those are left out unless `temporary` asks for them."""
+        if not self.store.exists():
+            return []
+        return sorted(p.name for p in self.store.iterdir() if temporary or not p.name.startswith('.tmp-'))
 
     def run(self, *args, code=0, token='@owner', env=None):
         e = dict(env or self.env)
@@ -418,7 +423,7 @@ try:
         c.serve(VENOMX_TEST_RECOVERY_FAULT=fault)
         c.run('session', 'create', '--name=attempt')
         assert c.err('recovery', 'checkpoint', code=6) == 'unavailable.recovery_io', fault
-        assert not [f for f in c.files() if f.startswith('.tmp-')], (fault, c.files())
+        assert not [f for f in c.files(temporary=True) if f.startswith('.tmp-')], (fault, c.files(temporary=True))
         valid = cid(c.run('recovery', 'list'))
         assert good in valid, (fault, valid)
         assert len(valid) == (2 if fault == 'dir_fsync' else 1), (fault, valid)  # visible-but-unsynced may survive
@@ -627,7 +632,7 @@ try:
     (c.store / '.tmp-00000000-0000-4000-8000-000000000000').write_text('partial')
     (c.store / '.tmp-00000000-0000-4000-8000-000000000000').chmod(0o600)
     c.serve()
-    assert not any(f.startswith('.tmp-') for f in c.files()), 'safe temporary not removed at startup'
+    assert not any(f.startswith('.tmp-') for f in c.files(temporary=True)), 'safe temporary not removed at startup'
     statuses = {x['checkpoint']: x['status'] for x in c.run('recovery', 'list')['checkpoints']}
     want = {1: 'valid', 2: 'incompatible', 3: 'corrupt', 4: 'corrupt', 5: 'corrupt', 6: 'corrupt', 7: 'future', 8: 'corrupt', 9: 'corrupt', 10: 'corrupt', 11: 'corrupt', 12: 'unsafe', 13: 'corrupt', 14: 'unsafe', 15: 'unsafe'}
     assert statuses == {ident(k): v for k, v in want.items()}, statuses
@@ -846,7 +851,7 @@ try:
     pending.communicate(timeout=TIMEOUT)
     gens = sorted((payload_of(c.store / f)['generation'], payload_of(c.store / f)['shutdown']) for f in c.files())
     assert gens == [(1, 'open'), (2, 'open'), (3, 'open'), (4, 'clean')], gens
-    assert not [f for f in c.files() if f.startswith('.tmp-')]
+    assert not [f for f in c.files(temporary=True) if f.startswith('.tmp-')]
     # Periodic ticks (1 s) while a 2.5 s write is in flight coalesce into one
     # later capture: never more than one write in flight, no queue, no
     # duplicate generations, and the last capture has the latest tree.
