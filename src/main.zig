@@ -442,6 +442,9 @@ const Loop = struct {
             };
             const current = self.config.current();
             if (!samePolicy(self.product.registry.policy, current.grants)) try self.product.registry.setPolicy(current.grants);
+            // Only an isolating venomx is a process manager: with isolation off
+            // its panes count as the user's terminal for other venom daemons.
+            self.server.setManagerMarker(current.grants.isolation) catch self.logger.warn("manager marker could not be changed", .{});
             self.product.streams.config = current.pane_stream;
             self.product.runs.settings = current.run;
             // A reload re-resolves every float's preset.
@@ -530,7 +533,7 @@ const Daemon = struct {
         var dispatcher = try proto.Dispatcher.init(self.a, &App.schema, &bindings, .{}, null);
         defer dispatcher.deinit();
         streams.control = dispatcher.handler();
-        var server = try proto.Server.init(self.a, .{ .hello = .{ .identity = .{ .name = "venomx", .version = @import("version.zig").version }, .caps = &.{ "cancel", stream.capability }, .schema = &digest }, .path = path, .registry = &registry, .subreaper = true }, streams.handler());
+        var server = try proto.Server.init(self.a, .{ .hello = .{ .identity = .{ .name = "venomx", .version = @import("version.zig").version }, .caps = &.{ "cancel", stream.capability }, .schema = &digest }, .path = path, .registry = &registry, .subreaper = true, .manager_marker = registry.policy.isolation }, streams.handler());
         defer server.deinit();
         product.socket = server.path;
         // Only the socket lock holder touches its store; retention

@@ -6,6 +6,10 @@ with nothing set, like tmux: from a shell outside venomx with no token, and
 from a pane with the token venomx gave it. `respond`, `files` and `admin`
 stay the owner's, and `venomx.*` stays reserved. Turning
 isolation on brings back the read-only default.
+
+Only an isolating venomx marks itself as a process manager next to its
+socket: with isolation off, other venom daemons treat its panes as the
+user's terminal. Its own owner token stays refused inside its panes.
 """
 import json
 import os
@@ -52,6 +56,16 @@ with tempfile.TemporaryDirectory(prefix='vx-iso-') as root:
         until(lambda: Path(path).exists() or d.poll() is not None)
         assert d.poll() is None, d.communicate()
 
+        def marked():
+            return bool(list(root.glob(f'manager-{d.pid}-*')))
+
+        def marker_check():
+            return [c for c in cli('doctor')['checks'] if c['id'] == 'grants.manager_marker'][0]
+
+        # Isolation off: no manager marker.
+        assert not marked(), list(root.iterdir())
+        assert 'not marked' in marker_check()['message'], marker_check()
+
         # Outside venomx, no token: the user's script just works.
         who = cli('whoami')
         assert who['principal'] == 'unknown' and {'right': 'write', 'scope': '*'} in who['grants'], who
@@ -90,10 +104,17 @@ with tempfile.TemporaryDirectory(prefix='vx-iso-') as root:
         codes = json.loads(text.split('CODES:')[1].split()[0])
         assert codes == [0, 0, 0, 4, 4], codes
         until(lambda: 'PANE-WROTE' in cli('pane', 'capture', f'--pane={shell["pane"]}')['text'])
+        # venomx's own owner token stays refused in its panes.
+        probe = (f'VENOMX_TOKEN=@owner {EXE} whoami --socket {path} --json; echo OWNER-RC=$?')
+        refused = cli('window', 'create', f'--session={s0}', f'--argv={json.dumps(["/bin/sh", "-c", probe + "; sleep 30"])}')['pane']
+        text = until(lambda: (v['text'] if 'OWNER-RC=' in (v := cli('pane', 'capture', f'--pane={refused}'))['text'] else None))
+        assert 'OWNER-RC=4' in text and 'owner_context' in text, text
 
         # Turning isolation on: unknown is read-only again, the segment stays.
         cli('config', 'set', '--key=grants.isolation', '--value=true', environ=owner)
         cli('config', 'reload', environ=owner)
+        until(marked)
+        assert 'marked as a process manager' in marker_check()['message'] and 'not marked' not in marker_check()['message'], marker_check()
         assert err('notify', 'post', '--text=again').startswith('denied.')
         assert err('status', 'set', '--id=user.build', '--text=x', '--ttl-ms=60000').startswith('denied.')
         assert any(s['id'] == 'user.build' for s in cli('status', 'list')['segments'])
@@ -101,6 +122,7 @@ with tempfile.TemporaryDirectory(prefix='vx-iso-') as root:
         # And off again: the default comes back on reload.
         cli('config', 'set', '--key=grants.isolation', '--value=false', environ=owner)
         cli('config', 'reload', environ=owner)
+        until(lambda: not marked())
         cli('notify', 'post', '--text=open again')
     finally:
         d.terminate()
