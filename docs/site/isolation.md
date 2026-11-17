@@ -115,6 +115,14 @@ prompt-injected agent should not be able to type into your shell, kill
 another agent's pane, or replace venom's status segments. venom warns in its
 `doctor` when the venomx it drives has isolation off.
 
+Isolation also decides how other venom tools see your panes. With it off, a
+pane counts as your terminal: `venom` started in a pane starts its daemon
+and acts as you, as it would in a terminal tab. With it on, venomx marks
+itself as a process manager next to its socket (`manager-<pid>-<start>`),
+and other venom daemons refuse their owner token to everything in its
+panes. `venomx doctor` reports this as `grants.manager_marker`. A pane that
+was already connected keeps what it had until it reconnects.
+
 Grants are not a sandbox in either mode. A process running as your user can
 read your files, and one outside venomx can read the owner file and act as
 you.
